@@ -6,89 +6,62 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:09:33 by moraouf           #+#    #+#             */
-/*   Updated: 2024/11/14 22:10:48 by moraouf          ###   ########.fr       */
+/*   Updated: 2024/11/17 01:50:46 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libftprintf.h"
 #include <stdarg.h>
-#include "libftprintf.h" 	
 
-int ft_printf(const char *format,...)
+int	ft_format(va_list arg, const char format)
 {
-	va_list args;
+	if (format == 's')
+		return (ft_putstr(va_arg(arg, char *)));
+	else if (format == 'd' || format == 'i')
+		return (ft_putnbr(va_arg(arg, int)));
+	else if (format == 'u')
+		return (ft_unsigned(va_arg(arg, int)));
+	else if (format == 'x')
+		return (ft_hexadecimal(va_arg(arg, unsigned int), 'x'));
+	else if (format == 'X')
+		return (ft_hexadecimal(va_arg(arg, unsigned int), 'X'));
+	else if (format == 'p')
+		return (ft_pourcentage(va_arg(arg, void *)));
+	else if (format == '%')
+		return (ft_putchar('%'));
+	return (0);
+}
 
-	va_start(args,format);
-	int count = 0;
+int	ft_printf(const char *format, ...)
+{
+	va_list	arg;
+	int		count;
 
-	const char *ptr = format;
-
-	while(*ptr)
+	if (!format)
+		return (-1);
+	va_start(arg, format);
+	count = 0;
+	while (*format)
 	{
-		if(*ptr == '%')
+		if (*format == '%')
 		{
-			ptr++;
-			if(*ptr== 's')
-			{
-				char *str = va_arg(args,char *);
-				count += ft_putstr(str);
-			}
-			else if(*ptr == 'd')
-			{
-				int num = va_arg(args,int);
-				count += ft_putnbr(num);
-			}
-			else
-			{
-				count+= ft_putchar(*ptr);
-			}
-			ptr++;
+			format++;
+			count += ft_format(arg, *format);
 		}
-		else{
-			count += ft_putchar(*ptr);
-		}
-		ptr++;
+		else
+			count += ft_putchar(*format);
+		format++;
 	}
-	va_end(args);
-	return(count);
+	va_end(arg);
+	return (count);
 }
-	
-#include <stdio.h>		
-int main() {
-    int standard_count;
-    int custom_count;
 
-    // Test 1: Simple string
-    printf("Test 1: Simple string\n");
-    standard_count = printf("Standard printf: Hello, %s!\n", "World");
-    custom_count = ft_printf("Custom ft_printf: Hello, %s!\n", "World");
-    printf("Standard count: %d, Custom count: %d\n\n", standard_count, custom_count);
+// #include <stdio.h>
 
-    // Test 2: Integer formatting
-    printf("Test 2: Integer formatting\n");
-    standard_count = printf("Standard printf: Score: %d\n", 95);
-    custom_count = ft_printf("Custom ft_printf: Score: %d\n", 95);
-    printf("Standard count: %d, Custom count: %d\n\n", standard_count, custom_count);
-
-    // Test 3: Multiple format specifiers
-    printf("Test 3: Multiple format specifiers\n");
-    standard_count = printf("Standard printf: Name: %s, Age: %d, Grade: %d\n", "Alice", 23, 89);
-    custom_count = ft_printf("Custom ft_printf: Name: %s, Age: %d, Grade: %d\n", "Alice", 23, 89);
-    printf("Standard count: %d, Custom count: %d\n\n", standard_count, custom_count);
-
-    // Test 4: Literal percent sign
-    printf("Test 4: Literal percent sign\n");
-    standard_count = printf("Standard printf: 100%% complete\n");
-    custom_count = ft_printf("Custom ft_printf: 100%% complete\n");
-    printf("Standard count: %d, Custom count: %d\n\n", standard_count, custom_count);
-
-    // Test 5: Edge cases (empty string)
-    printf("Test 5: Edge cases (empty string)\n");
-    standard_count = printf("Standard printf: %s\n", "");
-    custom_count = ft_printf("Custom ft_printf: %s\n", "");
-    printf("Standard count: %d, Custom count: %d\n\n", standard_count, custom_count);
-
-    // Test 6: NULL pointer for string
-
-
-    return 0;
-}
+// int	main(void)
+// {
+// 	ft_printf("Hello, %s! Your score is %d and your rank is %u.\n", "Alice", 95,
+// 			42);
+// 	ft_printf("Hexadecimal: %x (lowercase), %X (uppercase)\n", 255, 255);
+// 	ft_printf("Literal percent: %%\n");
+// }

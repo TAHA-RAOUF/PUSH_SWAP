@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_pourcentage.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 17:28:10 by moraouf           #+#    #+#             */
-/*   Updated: 2024/11/16 22:15:02 by moraouf          ###   ########.fr       */
+/*   Created: 2024/11/17 01:29:50 by moraouf           #+#    #+#             */
+/*   Updated: 2024/11/17 01:49:43 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libftprintf.h"
 
-int	ft_putchar(char c)
+int	ft_pourcentage(void *ptr)
 {
-	return (write(1, &c, 1));
+	unsigned long	adrres;
+	int				count;
+
+	count = 0;
+	adrres = (unsigned long)ptr;
+	count += ft_putstr("0x");
+	if (adrres == 0)
+		count += ft_putstr("(nil)");
+	else
+		count += ft_hexadecimal(adrres, 'x');
+	return (count);
 }
