@@ -6,11 +6,11 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:28:10 by moraouf           #+#    #+#             */
-/*   Updated: 2024/11/16 22:15:02 by moraouf          ###   ########.fr       */
+/*   Updated: 2024/11/18 12:15:31 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {

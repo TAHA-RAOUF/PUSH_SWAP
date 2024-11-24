@@ -6,11 +6,11 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 21:19:41 by moraouf           #+#    #+#             */
-/*   Updated: 2024/11/16 22:19:27 by moraouf          ###   ########.fr       */
+/*   Updated: 2024/11/18 12:15:41 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <unistd.h>
 
 int	ft_putnbr(int n)

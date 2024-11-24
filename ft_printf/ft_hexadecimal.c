@@ -6,11 +6,11 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 20:47:17 by moraouf           #+#    #+#             */
-/*   Updated: 2024/11/17 01:50:20 by moraouf          ###   ########.fr       */
+/*   Updated: 2024/11/18 14:08:58 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_hexadecimal(unsigned long num, const char base)
 {
