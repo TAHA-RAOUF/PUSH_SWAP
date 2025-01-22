@@ -6,7 +6,7 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:04:27 by moraouf           #+#    #+#             */
-/*   Updated: 2025/01/17 22:05:12 by moraouf          ###   ########.fr       */
+/*   Updated: 2025/01/22 20:50:55 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
 void	ft_putnbr(int nb)

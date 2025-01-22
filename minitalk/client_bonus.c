@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 22:03:43 by moraouf           #+#    #+#             */
-/*   Updated: 2025/01/22 20:49:50 by moraouf          ###   ########.fr       */
+/*   Created: 2025/01/22 14:09:12 by moraouf           #+#    #+#             */
+/*   Updated: 2025/01/22 20:51:59 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,18 @@ void	send_message(pid_t pid, const char *message)
 	}
 }
 
+void	message_received(int sig)
+{
+	(void)sig;
+	write(1, "message recu !!", 16);
+}
+
 int	main(int argc, char **argv)
 {
 	pid_t	pid;
 
 	signal(SIGINT, handle_sigint);
+	signal(SIGUSR2, message_received);
 	if (argc != 3)
 	{
 		write(1, "Usage: ./client <PID> <Message>\n", 32);

@@ -6,7 +6,7 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:06:58 by moraouf           #+#    #+#             */
-/*   Updated: 2025/01/17 22:07:01 by moraouf          ###   ########.fr       */
+/*   Updated: 2025/01/22 15:31:06 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 int		ft_atoi(const char *str);
 void	ft_putchar(char c);
 void	ft_putnbr(int nb);
+int		ft_strlen(char *str);
 
 #endif
