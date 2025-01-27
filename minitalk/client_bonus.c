@@ -6,7 +6,7 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:09:12 by moraouf           #+#    #+#             */
-/*   Updated: 2025/01/22 20:51:59 by moraouf          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:15:58 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 {
 	pid_t	pid;
 
-	signal(SIGINT, handle_sigint);
+	//signal(SIGINT, handle_sigint);
 	signal(SIGUSR2, message_received);
 	if (argc != 3)
 	{

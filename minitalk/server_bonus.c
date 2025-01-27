@@ -6,7 +6,7 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:01:36 by moraouf           #+#    #+#             */
-/*   Updated: 2025/01/22 20:45:33 by moraouf          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:10:02 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@ void	handler_signal(int sig, siginfo_t *info, void *ucontext)
 {
 	static char	current_char;
 	static int	bit_count;
-
+	static int pid_jedid;
 	(void)ucontext;
+	if(bit_count > 0 && pid_jedid != info->si_pid )
+	{
+		bit_count = 0;
+		current_char = 0;		
+	}
+	pid_jedid = info->si_pid;
 	if (sig == SIGUSR1)
 	{
 		current_char |= (1 << (MAX_BITS - 1 - bit_count));
