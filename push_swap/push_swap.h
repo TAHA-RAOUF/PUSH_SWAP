@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <limits.h>
 
 typedef struct  s_list
 {
@@ -14,6 +15,6 @@ typedef struct  s_list
 
 
 int ft_atoi(const char  *str);
-char    **ft_split(char *s);
+void main_fun(char **str, int ac);
 
 #endif

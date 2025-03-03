@@ -13,7 +13,7 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if ((str[i] == '-' || str[i] == '+') && (str[i + 1] >= '0' && str[i + 1] <= '9'))
 	{
 		if (str[i] == '-')
 			sign *= -1;
@@ -22,108 +22,47 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - 48);
+		if(result > INT_MAX && result < INT_MIN)
+			p_eroor();
 		i++;
 	}
+	check_input(str[i]);
 	return (result * sign);
 }
-#include <stdio.h>
-#include <stdlib.h>
-
-int     is_space(char   c)
+void p_eroor()
 {
-    return (c <= 32);
+	write(1,"hadchi ghalat",14);
+	exit(1);
 }
-
-int     count_word(char *s)
+void check_input(char c)
 {
-    int     i;
-    int     count;
+	if(!(c >= '0' && c <= '9'))
+	{
+		if(c != '\0' && !(c == 32 || (c >= 9 && c <= 13)))
+			p_error();
+	}
+		
+}
+void insert_num(char *str)
+{
+	int num;
 
-    if (!s) 
-        return (0);
+	num = ft_atoi(str);
 
+}
+void main_fun(char **str,int ac)
+{
+    int (i) , j;
     i = 0;
-    count = 0;
-    while (s[i])
+    j = 1;
+    while(ac > j)
     {
-        while (s[i] && is_space(s[i]))
+        while(str[j][i] == 32 || (str[j][i] >= 9 && str[j][i] <= 13))
             i++;
-        if (s[i] && !is_space(s[i]))
-        {
-            count++;
-            while (s[i] && !is_space(s[i]))
-                i++;
-        }
-    }
-    return (count);
-}
-
-char    *split_word(char *s)
-{
-    int     i;
-    char    *word;
-
-    i = 0;
-    while (s[i] && !is_space(s[i]))
-        i++;
-
-    word = malloc(sizeof(char) * (i + 1));
-    if (!word) 
-        return (NULL);
-
-    i = 0;
-    while (s[i] && !is_space(s[i]))
-    {
-        word[i] = s[i];
-        i++;
-    }
-    word[i] = '\0';
-    return (word);
-}
-
-void free_memory(char **list)
-{
-    int i = 0;
-    while (list[i])
-    {
-        free(list[i]);
-        i++;
-    }
-    free(list);
-}
-
-char    **ft_split(char *s)
-{
-    char    **list;
-    int     i;
-
-    if (!s) 
-        return (NULL);
-
-    i = 0;
-    list = malloc(sizeof(char *) * (count_word(s) + 1));
-    if (!list) 
-        return (NULL);
-
-    while (*s)
-    {
-        while (*s && is_space(*s))
-            s++;
-        if (*s && !is_space(*s))
-        {
-            list[i] = split_word(s);
-            if (!list[i]) 
-            {
-                free_memory(list);
-                return (NULL);
-            }
-            i++;
-            while (*s && !is_space(*s))
-                s++;
-        }
-    }
-    list[i] = NULL; 
-    return (list);
+        if(str[j][i])
+             insert_num(str[j] + i);
+        
+    }   
 }
 
 

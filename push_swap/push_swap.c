@@ -43,29 +43,12 @@ void ft_lst_add_back(t_list **lst,int value)
 }
 int main(int ac,char **av)
 {
-    char **tab;
-    int i = 0;
-    int count = 0;
+    t_list *head;
+    
 
-    t_list *head = NULL;
-    int *nums;
-    if(ac == 2)
+    head = NULL;
+    if(ac >= 2) 
     {
-        tab = ft_split(av[1]);
-        while(tab[count])
-            count++;
-        nums = malloc(sizeof(int) * (count));
-        while(tab[i])
-        {
-            nums[i] = ft_atoi(tab[i]);
-            ft_lst_add_back(&head,nums[i]);
-            i++;
-        }
-        print_list(head);
-        i = 0;
-        while (tab[i])
-            free(tab[i++]);
-        free(tab);
-        free(nums);
+        main_fun(av,ac);
     }
 }
