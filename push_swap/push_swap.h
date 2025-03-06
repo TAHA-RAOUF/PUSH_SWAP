@@ -17,5 +17,9 @@ typedef struct  s_list
 int ft_atoi(const char  *str);
 void main_fun(char **str,int ac,t_list **head);
 void ft_lst_add_back(t_list **lst,int value);
+char	*ft_strjoin(const char *s1, const char *s2);
+char	**ft_split(char const *s, char c);
+
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:09:12 by moraouf           #+#    #+#             */
-/*   Updated: 2025/03/06 17:45:56 by moraouf          ###   ########.fr       */
+/*   Updated: 2025/03/06 18:08:48 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void check_input(char c)
 			fun_eror();
 	}
 }
+
 int	ft_atoi(const char *str)
 {
 	unsigned int	i;
@@ -59,27 +60,21 @@ int	ft_atoi(const char *str)
 void main_fun(char **str,int ac,t_list **head)
 {
     int (i) , j;
-    j = 1;
-	i = 0;
+    j = 2;
+	char *joined = ft_strjoin("",str[1]);
     while(ac > j)
     {
-		i = 0;
-		while(str[j][i])
-		{
-			while(str[j][i] == 32 || (str[j][i] >= 9 && str[j][i] <= 13))
-            	i++;
-        	if(str[j][i])
-			{
-            	ft_lst_add_back(head,ft_atoi(str[j] + i));
-				while (str[j][i] && (str[j][i] >= '0' && str[j][i] <= '9'))
- 					   i++;
-				while (str[j][i] == 32 || (str[j][i] >= 9 && str[j][i] <= 13))
-    					i++;
-			}
-			if(str[j][i] == '\0')
-				return;
-			i++;
-    	}
-		j++;
+		char *temp = joined;
+		temp = ft_strjoin(joined,str[j]);
+		free(temp);
+	}
+	int **numbers = ft_split(joined,32);
+	free(joined);
+
+	while(i > 0)
+	{
+		ft_lst_add_back(head,ft_atoi(numbers[i]));
+		i++;
+		free(numbers);
 	}
 }
