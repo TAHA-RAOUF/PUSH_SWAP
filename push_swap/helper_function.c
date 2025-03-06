@@ -1,7 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper_function.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/06 14:09:12 by moraouf           #+#    #+#             */
+/*   Updated: 2025/03/06 17:45:56 by moraouf          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdio.h>
 #include "push_swap.h"
 
+void fun_eror()
+{
+    write(1, "error\n", 6);
+    exit(1);
+}
+void check_input(char c)
+{
+	if(!(c >= '0' && c <= '9'))
+	{
+		if(c != '\0' && !(c == 32 || (c >= 9 && c <= 13)))
+			fun_eror();
+	}
+}
 int	ft_atoi(const char *str)
 {
 	unsigned int	i;
@@ -21,48 +46,40 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		result = result * 10 + (str[i] - 48);
-		if(result > INT_MAX && result < INT_MIN)
-			p_eroor();
+		result = result * 10 + (str[i] - '0');
+		if (result > INT_MIN || result < INT_MAX)
+			fun_eror();
 		i++;
 	}
-	check_input(str[i]);
+	if (str[i] != '\0' && !(str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
+		fun_eror();
 	return (result * sign);
 }
-void p_eroor()
-{
-	write(1,"hadchi ghalat",14);
-	exit(1);
-}
-void check_input(char c)
-{
-	if(!(c >= '0' && c <= '9'))
-	{
-		if(c != '\0' && !(c == 32 || (c >= 9 && c <= 13)))
-			p_error();
-	}
-		
-}
-void insert_num(char *str)
-{
-	int num;
 
-	num = ft_atoi(str);
-
-}
-void main_fun(char **str,int ac)
+void main_fun(char **str,int ac,t_list **head)
 {
     int (i) , j;
-    i = 0;
     j = 1;
+	i = 0;
     while(ac > j)
     {
-        while(str[j][i] == 32 || (str[j][i] >= 9 && str[j][i] <= 13))
-            i++;
-        if(str[j][i])
-             insert_num(str[j] + i);
-        
-    }   
+		i = 0;
+		while(str[j][i])
+		{
+			while(str[j][i] == 32 || (str[j][i] >= 9 && str[j][i] <= 13))
+            	i++;
+        	if(str[j][i])
+			{
+            	ft_lst_add_back(head,ft_atoi(str[j] + i));
+				while (str[j][i] && (str[j][i] >= '0' && str[j][i] <= '9'))
+ 					   i++;
+				while (str[j][i] == 32 || (str[j][i] >= 9 && str[j][i] <= 13))
+    					i++;
+			}
+			if(str[j][i] == '\0')
+				return;
+			i++;
+    	}
+		j++;
+	}
 }
-
-

@@ -1,54 +1,60 @@
-#include <unistd.h>
 #include "push_swap.h"
-
-
 
 t_list *ft_new_node(int content)
 {
-    t_list *node;
-
-    node = malloc(sizeof(t_list));
-    if(!node)
+    t_list *node = malloc(sizeof(t_list));
+    if (!node)
         return NULL;
-    node ->content = content;
+    node->content = content;
     node->next = NULL;
-    return(node);
-    
+    return node;
 }
+
 void print_list(t_list *head)
 {
-
-    while(head)
+    while (head)
     {
-        printf("%d\n",head->content);
+        printf("%d\n", head->content);
         head = head->next;
     }
 }
-void ft_lst_add_back(t_list **lst,int value)
-{
-    t_list *last;
 
+void ft_lst_add_back(t_list **lst, int value)
+{
     t_list *new = ft_new_node(value);
-    if(!lst || !new)
+    if (!lst || !new)
         return;
-    if(*lst == NULL)
+    if (*lst == NULL)
         *lst = new;
-    else 
+    else
     {
-        last = *lst;
-        while(last->next)
+        t_list *last = *lst;
+        while (last->next)
             last = last->next;
         last->next = new;
     }
 }
-int main(int ac,char **av)
-{
-    t_list *head;
-    
 
-    head = NULL;
-    if(ac >= 2) 
+int main(int ac, char **av)
+{
+    if (ac >= 2)
     {
-        main_fun(av,ac);
+        t_list *head = NULL;
+        main_fun(av, ac, &head);
+        print_list(head);
+
+        t_list *temp;
+        while (head)
+        {
+            temp = head;
+            head = head->next;
+            free(temp);
+        }
+        return 0;
+    }
+    else
+    {
+        write(1, "error\n", 6);
+        exit(1);
     }
 }
