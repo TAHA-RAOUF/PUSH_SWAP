@@ -6,12 +6,10 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:09:12 by moraouf           #+#    #+#             */
-/*   Updated: 2025/03/06 18:08:48 by moraouf          ###   ########.fr       */
+/*   Updated: 2025/03/07 15:47:01 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
 #include "push_swap.h"
 
 void fun_eror()
@@ -48,7 +46,7 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');
-		if (result > INT_MIN || result < INT_MAX)
+		if (result < INT_MIN || result > INT_MAX)
 			fun_eror();
 		i++;
 	}
@@ -56,7 +54,18 @@ int	ft_atoi(const char *str)
 		fun_eror();
 	return (result * sign);
 }
+void	free_mem(char **array)
+{
+	int	i;
 
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
 void main_fun(char **str,int ac,t_list **head)
 {
     int (i) , j;
@@ -65,16 +74,17 @@ void main_fun(char **str,int ac,t_list **head)
     while(ac > j)
     {
 		char *temp = joined;
-		temp = ft_strjoin(joined,str[j]);
+		joined = ft_strjoin(joined,str[j]);
 		free(temp);
+		j++;
 	}
-	int **numbers = ft_split(joined,32);
+	char **numbers = ft_split(joined,32);
 	free(joined);
-
-	while(i > 0)
+	i = 0;
+	while(numbers[i])
 	{
 		ft_lst_add_back(head,ft_atoi(numbers[i]));
 		i++;
-		free(numbers);
 	}
+	free_mem(numbers);
 }

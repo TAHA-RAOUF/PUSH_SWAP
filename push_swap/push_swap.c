@@ -22,7 +22,7 @@ void print_list(t_list *head)
 void ft_lst_add_back(t_list **lst, int value)
 {
     t_list *new = ft_new_node(value);
-    if (!lst || !new)
+    if (!lst ||!new)
         return;
     if (*lst == NULL)
         *lst = new;

@@ -6,7 +6,7 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:59:20 by moraouf           #+#    #+#             */
-/*   Updated: 2025/03/06 18:00:33 by moraouf          ###   ########.fr       */
+/*   Updated: 2025/03/07 15:59:51 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**ft_split(char const *s, char c)
 	char	**str_split;
 	int		i;
 	int		j;
-
+	
 	i = 0;
 	str_split = malloc(sizeof(char *) * count_word(s, c));
 	if (!str_split)
@@ -72,7 +72,7 @@ char	**ft_split(char const *s, char c)
 		if (*s != c)
 		{
 			j = 0;
-			str_split[i] = malloc(lenght_word(s, c) + 1);
+			str_split[i] = malloc(lenght_word(s, c) + 1);	
 			if (!str_split[i])
 				return (free_memory(str_split, i), NULL);
 			while (*s && *s != c)
@@ -99,7 +99,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		i++;
 	while (s2[j])
 		j++;
-	str = malloc(sizeof(char) * (i + j + 1));
+	str = malloc(sizeof(char) * (i + j + 2));
 	if (!str)
 		return (NULL);
 	i = 0;
