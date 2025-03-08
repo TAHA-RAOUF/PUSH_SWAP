@@ -6,7 +6,7 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:59:20 by moraouf           #+#    #+#             */
-/*   Updated: 2025/03/07 15:59:51 by moraouf          ###   ########.fr       */
+/*   Updated: 2025/03/08 17:18:05 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,7 @@ char	**ft_split(char const *s, char c)
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char			*str;
-	unsigned int	i;
-	unsigned int	j;
-	int				k;
-
+	int	(i), j, k;
 	i = 0;
 	j = 0;
 	if (!s1 || !s2)
@@ -99,7 +96,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		i++;
 	while (s2[j])
 		j++;
-	str = malloc(sizeof(char) * (i + j + 2));
+	str = malloc(sizeof(char) * (i + j + 3));
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -110,6 +107,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	j = 0;
 	while (s2[j])
 		str[k++] = s2[j++];
-	str[k] = '\0';
+	str[k] = ' ';
+	str[k + 1] = '\0';
 	return (str);
 }

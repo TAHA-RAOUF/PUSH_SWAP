@@ -6,27 +6,22 @@
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:09:12 by moraouf           #+#    #+#             */
-/*   Updated: 2025/03/07 15:47:01 by moraouf          ###   ########.fr       */
+/*   Updated: 2025/03/08 17:20:01 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void fun_eror()
+int fun_eror(char **array,t_list **head)
 {
-    write(1, "error\n", 6);
-    exit(1);
+	if(array)
+		free_mem(array);		
+	if(head)
+		ft_lstclear(head);
+    write(1, "error3\n", 6);
+	exit(1);
 }
-void check_input(char c)
-{
-	if(!(c >= '0' && c <= '9'))
-	{
-		if(c != '\0' && !(c == 32 || (c >= 9 && c <= 13)))
-			fun_eror();
-	}
-}
-
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str,char **array,t_list **head)
 {
 	unsigned int	i;
 	int				result;
@@ -47,11 +42,11 @@ int	ft_atoi(const char *str)
 	{
 		result = result * 10 + (str[i] - '0');
 		if (result < INT_MIN || result > INT_MAX)
-			fun_eror();
+			fun_eror(array,head);
 		i++;
 	}
 	if (str[i] != '\0' && !(str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
-		fun_eror();
+		fun_eror(array,head);
 	return (result * sign);
 }
 void	free_mem(char **array)
@@ -83,8 +78,13 @@ void main_fun(char **str,int ac,t_list **head)
 	i = 0;
 	while(numbers[i])
 	{
-		ft_lst_add_back(head,ft_atoi(numbers[i]));
+		ft_lst_add_back(head,ft_atoi(numbers[i],numbers,head));
 		i++;
+	}
+	if(check_double(*head))
+	{
+		free_mem(numbers);
+		exit(1);
 	}
 	free_mem(numbers);
 }

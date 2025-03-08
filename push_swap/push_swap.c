@@ -18,6 +18,23 @@ void print_list(t_list *head)
         head = head->next;
     }
 }
+void ft_lstclear(t_list **lst)
+{
+    t_list *current;
+    t_list *next;
+
+    if (!lst || !*lst)
+        return;
+
+    current = *lst;
+    while (current)
+    {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+    *lst = NULL;
+}
 
 void ft_lst_add_back(t_list **lst, int value)
 {
@@ -42,7 +59,6 @@ int main(int ac, char **av)
         t_list *head = NULL;
         main_fun(av, ac, &head);
         print_list(head);
-
         t_list *temp;
         while (head)
         {
@@ -54,7 +70,7 @@ int main(int ac, char **av)
     }
     else
     {
-        write(1, "error\n", 6);
+        write(1, "error2\n", 6);
         exit(1);
     }
 }
