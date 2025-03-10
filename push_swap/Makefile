@@ -1,0 +1,32 @@
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
+
+SRCS = push_swap.c helper_function.c helper_function2.c helper_function3.c moves.c
+OBJECTS = $(SRCS:.c=.o)
+
+
+NAME = push_swap
+
+
+all: $(NAME)
+
+
+$(NAME): $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
+
+
+%.o: %.c push_swap.h
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+
+clean:
+	rm -rf $(OBJECTS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

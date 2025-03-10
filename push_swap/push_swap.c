@@ -10,12 +10,12 @@ t_list *ft_new_node(int content)
     return node;
 }
 
-void print_list(t_list *head)
+void print_list(t_list *stack_a)
 {
-    while (head)
+    while (stack_a)
     {
-        printf("%d\n", head->content);
-        head = head->next;
+        printf("%d\n", stack_a->content);
+        stack_a = stack_a->next;
     }
 }
 void ft_lstclear(t_list **lst)
@@ -56,14 +56,16 @@ int main(int ac, char **av)
 {
     if (ac >= 2)
     {
-        t_list *head = NULL;
-        main_fun(av, ac, &head);
-        print_list(head);
+        t_list *stack_a = NULL;
+        t_list *stack_b = NULL;
+
+        main_fun(av, ac, &stack_a);
+        print_list(stack_a);
         t_list *temp;
-        while (head)
+        while (stack_a)
         {
-            temp = head;
-            head = head->next;
+            temp = stack_a;
+            stack_a = stack_a->next;
             free(temp);
         }
         return 0;
