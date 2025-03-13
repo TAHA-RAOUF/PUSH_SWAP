@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 
-SRCS = push_swap.c helper_function.c helper_function2.c helper_function3.c moves.c
+SRCS = push_swap.c helper_function.c helper_function2.c helper_function3.c moves.c moves2.c
 OBJECTS = $(SRCS:.c=.o)
 
 

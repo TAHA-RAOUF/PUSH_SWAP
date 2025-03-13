@@ -57,9 +57,15 @@ int main(int ac, char **av)
     if (ac >= 2)
     {
         t_list *stack_a = NULL;
-        t_list *stack_b = NULL;
+        //t_list *stack_b = NULL;
 
         main_fun(av, ac, &stack_a);
+        print_list(stack_a);
+        printf("\n");
+        ra(&stack_a);
+        print_list(stack_a);
+        printf("\n");
+        rra(&stack_a);
         print_list(stack_a);
         t_list *temp;
         while (stack_a)
