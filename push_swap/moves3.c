@@ -1,51 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves2.c                                           :+:      :+:    :+:   */
+/*   moves3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 18:03:28 by moraouf           #+#    #+#             */
-/*   Updated: 2025/03/14 15:16:35 by moraouf          ###   ########.fr       */
+/*   Created: 2025/03/14 15:15:59 by moraouf           #+#    #+#             */
+/*   Updated: 2025/03/14 15:16:38 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_list **stack_a)
+void	rra(t_list **stack_a)
 {
-	t_list	*first;
 	t_list	*last;
+	t_list	*second_last;
 
 	if (!(*stack_a) || !(*stack_a)->next)
 		return ;
-	first = *stack_a;
-	*stack_a = (*stack_a)->next;
+	second_last = NULL;
 	last = *stack_a;
 	while (last->next)
+	{
+		second_last = last;
 		last = last->next;
-	last->next = first;
-	first->next = NULL;
+	}
+	second_last->next = NULL;
+	last->next = *stack_a;
+	*stack_a = last;
 }
 
-void	rb(t_list **stack_b)
+void	rrb(t_list **stack_b)
 {
-	t_list	*first;
 	t_list	*last;
+	t_list	*second_last;
 
-	if (!(*stack_b) || (*stack_b)->next)
+	if (!(*stack_b) || !(*stack_b)->next)
 		return ;
-	first = *stack_b;
-	*stack_b = (*stack_b)->next;
+	second_last = NULL;
 	last = *stack_b;
 	while (last->next)
+	{
+		second_last = last;
 		last = last->next;
-	last->next = first;
-	first->next = NULL;
+	}
+	second_last = NULL;
+	last->next = *stack_b;
+	*stack_b = last;
 }
 
-void	rr(t_list **stack_a, t_list **stack_b)
+void	rrr(t_list **stack_a, t_list **stack_b)
 {
-	ra(stack_a);
-	rb(stack_b);
+	rra(stack_a);
+	rrb(stack_b);
 }

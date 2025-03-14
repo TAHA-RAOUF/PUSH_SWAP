@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_function3.c                                 :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moraouf <moraouf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 15:44:29 by moraouf           #+#    #+#             */
-/*   Updated: 2025/03/10 14:52:47 by moraouf          ###   ########.fr       */
+/*   Created: 2025/03/14 15:36:51 by moraouf           #+#    #+#             */
+/*   Updated: 2025/03/14 17:23:44 by moraouf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_double(t_list *head)
-{
-	t_list *current;
-	t_list *runner;
 
-	current = head;
-	while (current)
-	{
-		runner = current->next;
-		while (runner)
-		{
-			if (current->content == runner->content)
-			{
-				write(1, "eroor1\n", 7);
-				ft_lstclear(&head);
-				return (1);
-			}
-			runner = runner->next;
-		}
-		current = current->next;
-	}
-	return (0);
+t_list *min(t_list **stack_a)
+{
+    t_list *current;
+    t_list *min;
+    
+    current = *stack_a;
+    min = current;
+    while(current)
+    {
+        if( current->content  < min->content)
+            min = current;
+        current = current->next;
+    }
+    return(min);
 }
+
+
+
+
+

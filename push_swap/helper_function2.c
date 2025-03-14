@@ -62,7 +62,7 @@ char	**ft_split(char const *s, char c)
 	char	**str_split;
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	str_split = malloc(sizeof(char *) * count_word(s, c));
 	if (!str_split)
@@ -72,7 +72,7 @@ char	**ft_split(char const *s, char c)
 		if (*s != c)
 		{
 			j = 0;
-			str_split[i] = malloc(lenght_word(s, c) + 1);	
+			str_split[i] = malloc(lenght_word(s, c) + 1);
 			if (!str_split[i])
 				return (free_memory(str_split, i), NULL);
 			while (*s && *s != c)
@@ -86,8 +86,9 @@ char	**ft_split(char const *s, char c)
 }
 char	*ft_strjoin(const char *s1, const char *s2)
 {
-	char			*str;
-	int	(i), j, k;
+	char	*str;
+
+	int(i), j, k;
 	i = 0;
 	j = 0;
 	if (!s1 || !s2)
@@ -103,7 +104,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	k = 0;
 	while (s1[i])
 		str[k++] = s1[i++];
-    str[k] = 32;
+	str[k] = 32;
 	j = 0;
 	while (s2[j])
 		str[k++] = s2[j++];
